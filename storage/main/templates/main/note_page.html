@@ -12,7 +12,7 @@
         {% if notes %}
             {% for el in notes %}
             <div style="margin-top: 10px; width: 200px">
-                <a style="width: 100%" href="#" class="btn btn-light">
+                <a style="width: 100%" href="/note/content/{{ el.id }}" class="btn btn-light">
                     {{ el }}
                 </a>
             </div>
