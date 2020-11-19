@@ -7,11 +7,12 @@
 {% block content %}
 <div style="display: flex; margin: 20px; justify-content: center">
     <div>
-        <h1 style="width: 200px">Категории</h1>
-        {% if category %}
-            {% for el in category %}
+        <h1 style="width: 200px">Заметки</h1>
+        <a href="{% url 'home' %}">Вернуться к категориям</a>
+        {% if notes %}
+            {% for el in notes %}
             <div style="margin-top: 10px; width: 200px">
-                <a style="width: 100%" href="/note/{{ el.id }}" class="btn btn-light">
+                <a style="width: 100%" href="#" class="btn btn-light">
                     {{ el }}
                 </a>
             </div>
@@ -19,8 +20,9 @@
         {% endif %}
         <form method="post" style="margin-top: 30px">
             {% csrf_token %}
-            {{ form.category }}
-            <button type="submit" style="margin-top: 10px" class="btn btn-success">Добавить</button>
+            {{ note_forms.note }}<br>
+            {{ note_forms.note_name }}<br>
+            <button type="submit" class="btn btn-success">Добавить</button>
         </form>
     </div>
 </div>
