@@ -5,5 +5,23 @@
 {% endblock %}
 
 {% block content %}
-New page
+<div style="display: flex; margin: 20px; justify-content: center">
+    <div>
+        <h1 style="width: 200px">Категории</h1>
+        {% if category %}
+            {% for el in category %}
+            <div style="margin: 5px; width: 200px">
+                <a style="width: 100%" href="#" class="btn btn-light">
+                    {{ el }}
+                </a>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post" style="margin-top: 30px">
+            {% csrf_token %}
+            {{ form.category }}
+            <button type="submit" style="margin-top: 10px" class="btn btn-success">Добавить</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
