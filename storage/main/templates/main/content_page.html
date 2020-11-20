@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; margin: 20px; justify-content: center">
+    <div>
+        <h1 style="width: 200px">Статьи</h1>
+        {% if article %}
+            {% for el in article %}
+                <a href="{% url 'notes' el.id %}">Вернуться к заметкам</a>
+                <form method="post" style="margin-top: 30px">
+                    {% csrf_token %}
+                    <class class="form-control">
+                        {{ el.title }}<br>
+                    </class>
+                    <class class="form-control">
+                         Текст зашифрован, введите пароль <br>
+                    </class>
+                    {{ form.password }}<br>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    <button type="submit" class="btn btn-success">Расшифровать</button>
+                </form>
+            {% endfor %}
+        {% else %}
+            <a href="{% url 'notes' 1 %}">Вернуться к заметкам</a>
+            <form method="post" style="margin-top: 30px">
+                {% csrf_token %}
+                {{ form.title }}<br>
+                {{ form.note_text }}<br>
+                {{ form.note_name }}<br>
+                {{ form.password }}<br>
+                <button type="submit" class="btn btn-success">Расшифровать</button>
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
